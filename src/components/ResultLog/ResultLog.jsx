@@ -14,19 +14,20 @@ const ResultLog = ({ dataInputs }) => {
   }
   return (
     <section>
-      <table id="result">
-        <thead>
-          <tr>
-            <th>Year</th>
-            <th>Investment Value</th>
-            <th>Interest (Year)</th>
-            <th>Total Interest</th>
-            <th>Invested Capital</th>
-          </tr>
-        </thead>
-        <tbody className="center">
-          {durationNotZero &&
-            results.map((result) => {
+      {!durationNotZero && <p id="wrong-result">Please Enter valid Duration</p>}
+      {durationNotZero && (
+        <table id="result">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Investment Value</th>
+              <th>Interest (Year)</th>
+              <th>Total Interest</th>
+              <th>Invested Capital</th>
+            </tr>
+          </thead>
+          <tbody className="center">
+            {results.map((result) => {
               const totalInterest =
                 result.valueEndOfYear -
                 result.annualInvestment * result.year -
@@ -42,8 +43,9 @@ const ResultLog = ({ dataInputs }) => {
                 </tr>
               );
             })}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      )}
     </section>
   );
 };
