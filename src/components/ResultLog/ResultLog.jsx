@@ -1,4 +1,17 @@
-const ResultLog = () => {
+import { calculateInvestmentResults, formatter } from "../../util/investment";
+
+const ResultLog = ({ dataInputs }) => {
+  let durationNotZero = dataInputs.duration > 0;
+  let results;
+  let initialInvestment;
+
+  if (durationNotZero) {
+    results = calculateInvestmentResults(dataInputs);
+    initialInvestment =
+      results[0].valueEndOfYear -
+      results[0].interest -
+      results[0].annualInvestment;
+  }
   return (
     <section>
       <table id="result">
@@ -12,20 +25,23 @@ const ResultLog = () => {
           </tr>
         </thead>
         <tbody className="center">
-          <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-          </tr>
+          {durationNotZero &&
+            results.map((result) => {
+              const totalInterest =
+                result.valueEndOfYear -
+                result.annualInvestment * result.year -
+                initialInvestment;
+              const totalAmountInvested = result.valueEndOfYear - totalInterest;
+              return (
+                <tr key={`${result.year}${result.valueEndOfYear}`}>
+                  <td>{result.year}</td>
+                  <td>{formatter.format(result.valueEndOfYear)}</td>
+                  <td>{formatter.format(result.interest)}</td>
+                  <td>{formatter.format(totalInterest)}</td>
+                  <td>{formatter.format(totalAmountInvested)}</td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </section>

@@ -4,7 +4,7 @@ const Input = ({ label, inputChange, ...props }) => {
   return (
     <span>
       <label>{label}</label>
-      <input type="text" onChange={inputChange} {...props} required />
+      <input type="number" onChange={inputChange} {...props} required />
     </span>
   );
 };

@@ -6,8 +6,10 @@ const InputGroup = ({ dataInput, onChange }) => {
       <div className="input-group">
         <Input
           label="Initial Input"
-          value={dataInput.initialInput}
-          inputChange={(event) => onChange("initialInput", event.target.value)}
+          value={dataInput.initialInvestment}
+          inputChange={(event) =>
+            onChange("initialInvestment", event.target.value)
+          }
         />
         <Input
           label="Annual Investment"

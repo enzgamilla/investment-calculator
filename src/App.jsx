@@ -13,10 +13,8 @@ function App() {
     setInputVal((oldInput) => {
       const updatedInput = {
         ...oldInput,
-        [inputIdentifier]: newValue,
+        [inputIdentifier]: +newValue,
       };
-
-      console.log(updatedInput);
       return updatedInput;
     });
   }

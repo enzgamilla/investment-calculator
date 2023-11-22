@@ -1,8 +1,8 @@
 let INPUTS_DEFAULT = {
-  initialInput: 0,
-  annualInvestment: 0,
-  expectedReturn: 0,
-  duration: 0,
+  initialInvestment: 1000,
+  annualInvestment: 2000,
+  expectedReturn: 10,
+  duration: 1,
 };
 
 export default INPUTS_DEFAULT;
